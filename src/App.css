@@ -4,3 +4,7 @@
   align-items: center;
   flex-wrap: wrap;
 }
+
+.pokemons {
+  grid-column-end: span 4;
+}

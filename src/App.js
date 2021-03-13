@@ -19,14 +19,16 @@ const App = () => {
                     into the player"s own color of red or blue.</p>
             </Layout>
             <Layout title="Страница 2" descr="Описание" colorBg="red">
-                {
-                    POKEMONS.map(item => <PokemonCard key={item.id}
-                                                      name={item.name}
-                                                      img={item.img}
-                                                      type={item.type}
-                                                      id={item.id}
-                                                      values={item.values}/>)
-                }
+                <div className="flex pokemons">
+                    {
+                        POKEMONS.map(item => <PokemonCard key={item.id}
+                                                          name={item.name}
+                                                          img={item.img}
+                                                          type={item.type}
+                                                          id={item.id}
+                                                          values={item.values}/>)
+                    }
+                </div>
             </Layout>
             <Layout title="Страница 3" descr="Описание" urlBg={bg2}>
                 <p>To win, a majority of the total ten cards played (including the one card that is not placed on the
