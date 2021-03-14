@@ -1,4 +1,4 @@
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
 const Header = (props) => {
     const {title = 'Hello', descr = 'World!'} = props;
