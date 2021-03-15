@@ -1,6 +1,6 @@
-import {useState} from "react";
-import classNames from "classnames";
-import styles from "./styles.module.css";
+import {useState} from 'react';
+import classNames from 'classnames';
+import styles from './styles.module.css';
 
 import cardBackSide from "../../assets/card-back-side.jpg";
 
@@ -8,10 +8,14 @@ const PokemonCard = ({name, type, img, id, values}) => {
 
     let [clicked, setClicked] = useState(false);
 
+    const handleClick = () => {
+        setClicked((clicked) => !clicked)
+    };
+
     return (
         <div className={styles.root}>
-            <div className={classNames(styles.pokemonCard, clicked ? styles.active : null)}
-                 onClick={() => setClicked((clicked) => !clicked)}>
+            <div className={classNames(styles.pokemonCard, {[styles.active]: clicked})}
+                 onClick={handleClick}>
                 <div className={styles.cardFront}>
                     <div className={classNames(styles.wrap, styles.front)}>
                         <div className={classNames(styles.pokemon, styles[type])}>
@@ -25,7 +29,7 @@ const PokemonCard = ({name, type, img, id, values}) => {
                                 <img src={img} alt={name}/>
                             </div>
                             <div className={styles.info}>
-                                <span className={styles.number}>{id}</span>
+                                <span className={styles.number}>#{id}</span>
                                 <h3 className={styles.name}>{name}</h3>
                                 <small className={styles.type}>Type: <span>{type}</span></small>
                             </div>

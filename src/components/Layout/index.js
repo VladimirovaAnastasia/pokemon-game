@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import styles from "./styles.module.css"
+import classNames from 'classnames';
+import styles from './styles.module.css';
 
 const Layout = (props) => {
-    const {title = "Привет", descr, urlBg, colorBg, children = null} = props;
+    const {title = 'Привет', descr, urlBg, colorBg, children = null} = props;
 
     const layoutStyle = {
         backgroundImage: urlBg ? `url(${urlBg})` : null,
