@@ -1,7 +1,12 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 const Header = (props) => {
-    const {title = 'Hello', descr = 'World!'} = props;
+    const {title = 'Hello', descr = 'World!', onClickButton} = props;
+
+
+    const handleClick = () => {
+        onClickButton && onClickButton('game')
+    };
 
     return (
         <header className={styles.root}>
@@ -9,6 +14,7 @@ const Header = (props) => {
             <div className={styles.container}>
                 <h1>{title}</h1>
                 <p>{descr}</p>
+                <button onClick={handleClick}>Start game</button>
             </div>
         </header>
     )
