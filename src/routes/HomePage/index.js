@@ -1,24 +1,18 @@
+import {useHistory} from 'react-router-dom';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
-import PokemonCard from '../../components/PokemonCard';
-import Footer from '../../components/Footer';
-import MenuHeader from '../../components/MenuHeader';
 
-import POKEMONS from '../../pokemons';
 import bg2 from '../../assets/bg2.jpg';
 import bg1 from '../../assets/bg1.jpg';
 
-import classNames from 'classnames';
-import styles from './styles.module.css';
-
-const HomePage = ({onChangePage}) => {
-    const handleClickButton = (page) => {
-        onChangePage && onChangePage(page);
+const HomePage = () => {
+    const history = useHistory();
+    const handleClickButton = () => {
+        history.push('/game')
     };
 
     return (
         <>
-            <MenuHeader/>
             <Header
                 title="Привет!"
                 descr="Тест"
@@ -31,16 +25,6 @@ const HomePage = ({onChangePage}) => {
                     into the player"s own color of red or blue.</p>
             </Layout>
             <Layout title="Страница 2" descr="Описание" colorBg="#F8F63C">
-                <div className={classNames(styles.flex, styles.pokemons)}>
-                    {
-                        POKEMONS.map(item => <PokemonCard key={item.id}
-                                                          name={item.name}
-                                                          img={item.img}
-                                                          type={item.type}
-                                                          id={item.id}
-                                                          values={item.values}/>)
-                    }
-                </div>
             </Layout>
             <Layout title="Страница 3" descr="Описание" urlBg={bg2}>
                 <p>To win, a majority of the total ten cards played (including the one card that is not placed on the
@@ -50,7 +34,6 @@ const HomePage = ({onChangePage}) => {
                     card will be captured and turned into the opponent"s color. If the player"s rank is higher, the
                     opponent"s card will be captured and changed into the player"s color instead. </p>
             </Layout>
-            <Footer/>
         </>
     )
 };

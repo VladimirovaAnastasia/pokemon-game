@@ -1,9 +1,16 @@
+import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import Menu from '../Menu';
 import NavBar from '../NavBar';
 
-const MenuHeader = () => {
-    const [isOpen, setOpen] = useState(false);
+const MenuHeader = ({bgActive}) => {
+    const history = useHistory();
+    let initOpenState = null;
+    if (history.location.pathname === '/game') {
+        initOpenState = false
+    }
+
+    const [isOpen, setOpen] = useState(initOpenState);
 
     const handleChangeStatus = () => {
         setOpen((isOpen) => !isOpen)
@@ -11,8 +18,8 @@ const MenuHeader = () => {
 
     return (
             <>
-                <Menu isActive={isOpen}/>
-                <NavBar isActive={isOpen} onClickButton={handleChangeStatus}/>
+                <Menu isActive={isOpen} onClickButton={handleChangeStatus}/>
+                <NavBar isActive={isOpen} bgActive={bgActive} onClickButton={handleChangeStatus}/>
             </>
     )
 };

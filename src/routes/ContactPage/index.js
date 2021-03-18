@@ -1,15 +1,18 @@
+import {useHistory} from 'react-router-dom';
 import styles from './styles.module.css';
 
-const GamePage = ({onChangePage}) => {
+const ContactPage = () => {
+    const history = useHistory();
     const handleClickButton = () => {
-        onChangePage && onChangePage('app');
+        history.push('/')
     };
+
     return (
         <div className={styles.game}>
-            <p>This is game page!</p>
+            <p>This is Contact page!</p>
             <button onClick={handleClickButton}>Homepage</button>
         </div>
     )
 };
 
-export default GamePage;
+export default ContactPage;
