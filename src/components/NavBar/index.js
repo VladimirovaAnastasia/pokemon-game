@@ -1,13 +1,15 @@
 import classNames from 'classnames';
 import styles from './styles.module.css';
 
-const NavBar = ({isActive = false, onClickButton}) => {
+const NavBar = ({isActive = false, bgActive = false, onClickButton}) => {
     const handleClick = () => {
         onClickButton && onClickButton()
     };
 
     return (
-        <nav className={styles.root}>
+        <nav id={styles.navbar} className={classNames(
+            {[styles.bgActive]: bgActive}
+        )}>
             <div className={styles.navWrapper}>
                 <p className={styles.brand}>
                     LOGO

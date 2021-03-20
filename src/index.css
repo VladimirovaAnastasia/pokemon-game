@@ -33,3 +33,13 @@ a:hover,
 a:active {
   color: #f300b4;
 }
+
+button {
+  margin-top: 5px;
+  padding: 10px;
+  background-color: #97b3e6;
+  color: #FFFFFF;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
