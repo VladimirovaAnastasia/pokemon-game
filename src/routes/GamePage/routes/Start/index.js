@@ -1,4 +1,5 @@
 import {useState, useEffect, useContext} from 'react';
+import {useHistory} from 'react-router-dom';
 import PokemonCard from '../../../../components/PokemonCard';
 
 import classNames from 'classnames';
@@ -68,17 +69,19 @@ const StartPage = () => {
         }))
     };
 
-    const handleClickAddButton = () => {
-        const data = {...pokemonTemplate, id: getRandom(30, 100)};
-
-        firebase.addPokemon(data, async () => {
-            await getPokemons()
-        })
+    const history = useHistory();
+    const handleClickStartButton = () => {
+        history.push('/game/board')
     };
 
     return (
         <div className={styles.game}>
-            <button onClick={handleClickAddButton}>ADD NEW POKEMON</button>
+            <button
+                onClick={handleClickStartButton}
+                disabled={Object.keys(selectedPokemons.pokemons).length < 5}
+            >
+                Start Game
+            </button>
             <div className={classNames(styles.flex, styles.pokemons)}>
                 {
                     pokemons &&  Object.entries(pokemons).map(([key, {id, name, img, type, values, isSelected}]) =>
@@ -93,7 +96,12 @@ const StartPage = () => {
                             values={values}
                             isActive={true}
                             isSelected={isSelected}
-                            changeVisibility={(key) => handleClickButton(key)}/>)
+                            changeVisibility={(key) => {
+                                if (Object.keys(selectedPokemons.pokemons).length < 5) {
+                                    handleClickButton(key)
+                                }
+                            }}
+                        />)
                 }
             </div>
         </div>

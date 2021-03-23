@@ -15,8 +15,20 @@ export const GamePage = () => {
     const [selectedPokemons, setSelectedPokemons] = useState({});
 
     const handlerClick = (key, pokemon) => {
-        console.log(pokemon)
-    }
+        setSelectedPokemons(prevState => {
+            if (prevState[key]) {
+                const copyState = {...prevState};
+                delete copyState[key];
+
+                return copyState
+            }
+
+            return {
+                ...prevState,
+                [key]: pokemon
+            }
+        })
+    };
 
     return (
         <FirebaseContext.Provider value={new Firebase()}>
