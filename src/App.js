@@ -1,6 +1,6 @@
-import {Route, Switch, useRouteMatch, Redirect} from 'react-router-dom';
+import {Route, Switch, useLocation, Redirect} from 'react-router-dom';
 import HomePage from './routes/HomePage';
-import GamePage from './routes/GamePage';
+import {GamePage} from './routes/GamePage';
 import AboutPage from './routes/AboutPage';
 import ContactPage from './routes/ContactPage';
 import NotFound from './routes/NotFound';
@@ -12,16 +12,17 @@ import styles from './styles.module.css'
 
 
 const App = () => {
-    const match = useRouteMatch('/');
+    const location = useLocation('/');
+    const idPadding = location.pathname === '/' || location.pathname === '/game/board';
 
     return (
         <Switch>
             <Route path="/404" component={NotFound}/>
             <Route>
                 <>
-                    <MenuHeader bgActive={!match.isExact}/>
+                    <MenuHeader bgActive={!idPadding}/>
                     <div className={classNames(styles.wrap, {
-                        [styles.isHomePage]: match.isExact
+                        [styles.isHomePage]: idPadding
                     })}>
                         <Switch>
                             <Route path="/" exact component={HomePage}/>
