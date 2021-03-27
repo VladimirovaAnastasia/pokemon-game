@@ -26,12 +26,12 @@ class Firebase {
          this.database.ref(`pokemon/${key}`).set(pokemon)
     };
 
-    addPokemon = async (data, cb) => {
+    addPokemon = async (data) => {
         const newKey = this.database.ref().child('pokemons').push().key;
         this.database
             .ref('pokemons/' + newKey)
-            .set(data).then(() => cb())
-    }
+            .set(data)
+    };
 
     offPokemonSoket = () => {
         this.database.ref('pokemons').off()

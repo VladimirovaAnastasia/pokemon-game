@@ -1,7 +1,24 @@
-.game {
+.cards {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    height: 100vh;
+    flex-direction: row;
+}
+
+.card {
+    width: 100%;
+    max-width: 18vw;
+    height: 25vw;
+    padding: 10px;
+}
+
+.card.selected {
+    margin-top: -20px;
+}
+
+.button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 30px 0;
 }

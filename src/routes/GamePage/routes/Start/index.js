@@ -4,36 +4,10 @@ import PokemonCard from '../../../../components/PokemonCard';
 
 import classNames from 'classnames';
 import styles from './styles.module.css';
-import {FirebaseContext} from "../../../../context/fireBaseContext";
-import {PokemonContext} from "../../../../context/pokemonContext";
 
-const pokemonTemplate = {
-    "abilities": [
-        "blaze",
-        "solar-power"
-    ],
-    "base_experience": 62,
-    "height": 6,
-    "weight": 85,
-    "id": 40,
-    "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-    "name": "charmander",
-    "stats": {
-        "hp": 39,
-        "attack": 52,
-        "defense": 43,
-        "special-attack": 60,
-        "special-defense": 50,
-        "speed": 65
-    },
-    "type": "fire",
-    "values": {
-        "top": 1,
-        "right": 1,
-        "bottom": 2,
-        "left": 1
-    }
-};
+import {FirebaseContext} from '../../../../context/fireBaseContext';
+import {PokemonContext} from '../../../../context/pokemonContext';
+
 
 const StartPage = () => {
     const firebase = useContext(FirebaseContext);
@@ -51,10 +25,6 @@ const StartPage = () => {
 
         return () => firebase.offPokemonSoket()
     }, []);
-
-    const getRandom = (min, max) => {
-        return Math.floor(Math.random()*(max - min) + min)
-    };
 
     const handleClickButton = (key) => {
         const pokemon = {...pokemons[key]};

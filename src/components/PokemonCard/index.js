@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import styles from './styles.module.css';
 
-const PokemonCard = ({name, type, img, id, pokemonKey, values, isActive, changeVisibility, minimize, className, isSelected}) => {
+const PokemonCard = ({name, type, img, id, pokemonKey, values, isActive, changeVisibility, minimize, className, isSelected, possession}) => {
 
     const handleClick = () => {
         changeVisibility && changeVisibility(pokemonKey)
@@ -17,7 +17,7 @@ const PokemonCard = ({name, type, img, id, pokemonKey, values, isActive, changeV
             >
                 <div className={styles.cardFront}>
                     <div className={classNames(styles.wrap, styles.front)}>
-                        <div className={classNames(styles.pokemon, styles[type])}>
+                        <div className={classNames(styles.pokemon, styles[type], styles[possession])}>
                             <div className={styles.values}>
                                 <div className={classNames(styles.count, styles.top)}>{values.top}</div>
                                 <div className={classNames(styles.count, styles.right)}>{values.right}</div>
