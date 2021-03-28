@@ -7,13 +7,20 @@ import styles from './styles.module.css';
 
 import {FirebaseContext} from '../../../../context/fireBaseContext';
 import {PokemonContext} from '../../../../context/pokemonContext';
+import {useDispatch, useSelector} from "react-redux";
+import {selectedPokemonsData} from "../../../../store/pokemons";
 
 
 const StartPage = () => {
     const firebase = useContext(FirebaseContext);
     const selectedPokemons = useContext(PokemonContext);
 
+
+    const pokemonsRedux = useSelector(selectedPokemonsData);
+    const dispatch = useDispatch();
+
     let [pokemons, setPokemons] = useState(null);
+    const [isLoading, setLoading] = useState(true);
 
     const getPokemons = async () => {
         const response = await firebase.getPokemonsOnce();
@@ -22,6 +29,8 @@ const StartPage = () => {
 
     useEffect(() => {
         getPokemons();
+        setLoading(false);
+        dispatch(getPokemons(pokemons));
 
         return () => firebase.offPokemonSoket()
     }, []);
